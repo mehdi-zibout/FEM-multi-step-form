@@ -18,7 +18,10 @@ const Addons = ({
   setIsActive,
 }: AddonsProps) => {
   return (
-    <Card className="flex justify-start  px-4 tablet:px-6 items-center w-[18.43rem] h-[3.875rem] tablet:w-[28.125rem] tablet:h-[5.06rem] ">
+    <Card
+      isActive={isActive}
+      className="flex justify-start  px-4 tablet:px-6 items-center w-[18.43rem] h-[3.875rem] tablet:w-[28.125rem] tablet:h-[5.06rem] "
+    >
       <div className="">
         <Checkbox isActive={isActive} setIsActive={setIsActive} />
       </div>

@@ -6,12 +6,14 @@ const personalInfoFields = [
   { fieldName: "Email Address", placeholder: "e.g. stephenking@lorem.com" },
   { fieldName: "Phone Number", placeholder: "e.g. +1 234 567 890" },
 ];
-const PersonalInfo = () => {
+import { StepProps } from "../Components/Steps";
+
+const PersonalInfo = ({ step, setStep }: StepProps) => {
   return (
     <div className="">
-      <div className="mt-[6.2rem] rounded-2xl tablet:mt-0 tablet:relative bg-white w-[21.4375rem] h-[23.5rem] py-7 px-6  tablet:w-[58.75rem] tablet:h-[37.5rem] tablet:pl-[24rem] tablet:py-[3.5rem]">
+      <div className="drop-shadow-md mt-[6.2rem] rounded-2xl tablet:mt-0 tablet:relative bg-white w-[21.4375rem] h-[23.5rem] py-7 px-6  tablet:w-[58.75rem] tablet:h-[37.5rem] tablet:pl-[24rem] tablet:py-[3.5rem]">
         <div className="hidden tablet:absolute tablet:block top-[2.72%] left-[2%] bg-no-repeat bg-[url('./assets/bg-sidebar-desktop.svg')] w-[17.125rem] h-[35.5rem] py-10 px-8">
-          <Steps />
+          <Steps step={step} />
         </div>
 
         <div className="">
@@ -29,12 +31,14 @@ const PersonalInfo = () => {
             );
           })}
           <div className="hidden tablet:flex justify-end items-center px-[6.5rem] pt-[3rem]">
-            <Button>Next Step</Button>
+            <Button onClick={() => setStep && setStep(step + 1)}>
+              Next Step
+            </Button>
           </div>
         </div>
       </div>
       <div className="bg-white tablet:hidden w-screen h-[4.5rem] absolute bottom-0 left-0 flex justify-end items-center px-4">
-        <Button>Next Step</Button>
+        <Button onClick={() => setStep && setStep(step + 1)}>Next Step</Button>
       </div>
     </div>
   );

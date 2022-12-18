@@ -1,13 +1,21 @@
-import Addons from "../Components/Addons";
 import Button from "../Components/Button";
 import Plan from "../Components/Plan";
 import Steps from "../Components/Steps";
 import Toggle from "../Components/Toggle";
+import { StepProps } from "../Components/Steps";
+import { ActionType } from "../logic/reducer";
+
+type SelectPlanProps = {
+  isYearly: boolean;
+  dispatch: React.Dispatch<ActionType>;
+  plan: 0 | 1 | 2;
+} & StepProps;
 //  title="arcade"
 // monthlyPrice={9}
 // avatar={
 const plans = [
   {
+    id: 0,
     title: "arcade",
     monthlyPrice: 9,
     avatar: (
@@ -29,6 +37,7 @@ const plans = [
     ),
   },
   {
+    id: 1,
     title: "advanced",
     monthlyPrice: 12,
     avatar: (
@@ -50,6 +59,7 @@ const plans = [
     ),
   },
   {
+    id: 2,
     title: "Pro",
     monthlyPrice: 15,
     avatar: (
@@ -71,12 +81,18 @@ const plans = [
     ),
   },
 ];
-const SelectPlan = () => {
+const SelectPlan = ({
+  isYearly,
+  plan,
+  dispatch,
+  step,
+  setStep,
+}: SelectPlanProps) => {
   return (
     <div className="">
-      <div className="mt-[6.2rem] rounded-2xl tablet:mt-0 tablet:relative bg-white w-[21.4375rem]  py-7 px-6  tablet:w-[58.75rem] tablet:h-[37.5rem] tablet:pl-[24rem] tablet:py-[3.5rem]">
+      <div className="drop-shadow-md mt-[6.2rem] rounded-2xl tablet:mt-0 tablet:relative bg-white w-[21.4375rem]  py-7 px-6  tablet:w-[58.75rem] tablet:h-[37.5rem] tablet:pl-[24rem] tablet:py-[3.5rem]">
         <div className="hidden tablet:absolute tablet:block top-[2.72%] left-[2%] bg-no-repeat bg-[url('./assets/bg-sidebar-desktop.svg')] w-[17.125rem] h-[35.5rem] py-10 px-8">
-          <Steps />
+          <Steps step={step} />
         </div>
 
         <div className="">
@@ -87,25 +103,44 @@ const SelectPlan = () => {
             You have the option of monthly or yearly billing.
           </p>
           <div className="flex flex-col tablet:flex-row justify-start items-center">
-            {plans.map((plan) => {
+            {plans.map((planComp) => {
               return (
-                <div className="tablet:pr-5 pb-5 tablet:pb-0" key={plan.title}>
-                  <Plan {...plan} />
-                </div>
+                <button
+                  className="tablet:pr-5 pb-5 tablet:pb-0"
+                  key={planComp.id}
+                  onClick={() =>
+                    dispatch({
+                      type: "SELECT_PLANT",
+                      payload: planComp.id as 0 | 1 | 2,
+                    })
+                  }
+                >
+                  <Plan isActive={planComp.id === plan} {...planComp} />
+                </button>
               );
             })}
           </div>
-          <Toggle className="mt-1 tablet:mt-8" isYearly={false} />
+          <Toggle
+            className="mt-1 tablet:mt-8"
+            isYearly={isYearly}
+            dispatch={dispatch}
+          />
           <div className="hidden tablet:flex justify-between items-center pt-[3rem] -ml-8 mr-20">
-            <Button isGhost>Go Back</Button>
+            <Button isGhost onClick={() => setStep && setStep(step - 1)}>
+              Go Back
+            </Button>
 
-            <Button>Next Step</Button>
+            <Button onClick={() => setStep && setStep(step + 1)}>
+              Next Step
+            </Button>
           </div>
         </div>
       </div>
       <div className="bg-white tablet:hidden w-screen h-[4.5rem] absolute bottom-0 left-0 flex justify-between items-center px-4">
-        <Button isGhost>Go Back</Button>
-        <Button>Next Step</Button>
+        <Button isGhost onClick={() => setStep && setStep(step - 1)}>
+          Go Back
+        </Button>
+        <Button onClick={() => setStep && setStep(step + 1)}>Next Step</Button>
       </div>
     </div>
   );
