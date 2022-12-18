@@ -5,14 +5,14 @@ module.exports = {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     screens: {
-      tablet: "640px",
+      tablet: "964px",
     },
     colors: {
       denim: "#022959",
       grey: "#9699AA",
       lightBlue: "#ABBCFF",
       skyBlue: "#BEE2FD",
-      lightGrey: "#D6D9E",
+      lightGrey: "#D6D9E6",
       veryLightGrey: "#F8F9FF",
       orange: "#FFAF7E",
       pink: "#F9818E",

@@ -9,7 +9,7 @@ type TextInputType = {
 const TextInput = ({ fieldName, error, ...props }: TextInputType) => {
   return (
     <label htmlFor={fieldName}>
-      <span className="flex justify-between  pb-2">
+      <span className="flex justify-between pb-[3px] tablet:pb-2">
         <span className="block text-m">{fieldName}</span>
         {error && (
           <span className="block text-m font-bold text-red">{error}</span>
