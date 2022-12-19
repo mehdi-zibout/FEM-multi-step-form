@@ -115,7 +115,11 @@ const SelectPlan = ({
                     })
                   }
                 >
-                  <Plan isActive={planComp.id === plan} {...planComp} />
+                  <Plan
+                    isYearly={isYearly}
+                    isActive={planComp.id === plan}
+                    {...planComp}
+                  />
                 </button>
               );
             })}
