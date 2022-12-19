@@ -4,6 +4,7 @@ import Steps from "./Components/Steps";
 import SelectPlan from "./Views/SelectPlan";
 import PersonalInfo from "./Views/PersonalInfo";
 import AddonsView from "./Views/AddonsView";
+import FinishingUp from "./Views/FinishingUp";
 
 export type StateType = {
   name: string;
@@ -46,7 +47,7 @@ function App() {
           state={state.addons}
         />
       ) : step === 4 ? (
-        ""
+        <FinishingUp state={state} step={step} setStep={setStep} />
       ) : (
         ""
       )}
