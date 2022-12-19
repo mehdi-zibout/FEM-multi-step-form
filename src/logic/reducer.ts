@@ -7,14 +7,17 @@ import { StateType } from "../App";
 //     payload:  | 0 | 1 | 2 | [boolean, boolean, boolean]
 // }   
 
-
 export type ActionType = {
    type: 'ADD_PERSONAL_INFORMATION'; payload: {  name: string, email: string, phone: string
    }  
 } | {
   type: 'SELECT_PLANT'; payload: 0 | 1 | 2;
 } | {type: 'PICK_ADDONS'; payload: 0 | 1 | 2;} | {type: 'CHANGE_SUBSCRIPTION'; payload: boolean;}
- const reducer = (state : StateType, action : ActionType) => {
+
+export type ReducerType = (state: StateType, action: ActionType) => StateType
+
+
+ const reducer : ReducerType = (state : StateType, action : ActionType) => {
     const { type, payload } = action;
   switch (type) {
     case 'ADD_PERSONAL_INFORMATION':
