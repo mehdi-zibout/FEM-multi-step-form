@@ -14,6 +14,7 @@ export type StateType = {
   isYearly: boolean;
   addons: [boolean, boolean, boolean]; //("online service" | "larger storage" | "customizable profile")[]
 };
+
 function App() {
   const [state, dispatch] = useReducer(reducer, {
     name: "",
@@ -30,7 +31,16 @@ function App() {
         <Steps step={step} setStep={setStep} />
       </div>
       {step === 1 ? (
-        <PersonalInfo step={step} setStep={setStep} />
+        <PersonalInfo
+          step={step}
+          setStep={setStep}
+          dispatch={dispatch}
+          personalData={{
+            name: state.name,
+            email: state.email,
+            phone: state.phone,
+          }}
+        />
       ) : step === 2 ? (
         <SelectPlan
           step={step}

@@ -109,7 +109,10 @@ const FinishingUp = ({ state, step, setStep }: AddonsViewProps) => {
               </Button>
 
               <Button
-                onClick={() => setConfirmed(true)}
+                onClick={() => {
+                  setConfirmed(true);
+                  console.log(state);
+                }}
                 className="bg-purple hover:bg-[#928CFF]"
               >
                 Confirm
@@ -125,7 +128,10 @@ const FinishingUp = ({ state, step, setStep }: AddonsViewProps) => {
               Go Back
             </Button>
             <Button
-              onClick={() => setConfirmed(true)}
+              onClick={() => {
+                setConfirmed(true);
+                console.log(state);
+              }}
               className="bg-purple hover:bg-[#928CFF]"
             >
               Confirm
